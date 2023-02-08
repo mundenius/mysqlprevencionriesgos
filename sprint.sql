@@ -169,12 +169,12 @@ acciconsecuencias, cliente_rutcliente) VALUES
 (3,'2023-02-02)','15:32:22', 'avenida sur 432','caida escalera', 'nariz rota', 29888333);
 
 INSERT INTO pagos (fechapago, monto, mespagado, añopagado, rutcliente_pagos) 
-VALUES ('2023-01-16', 50000, 'enero', 2023, 29888333),
+VALUES ('2023-01-16', 50000, 'enero', 2023, 181112220),
 ('2023-01-23', 34000, 'enero', 2023, 134206621),
 ('2023-02-06', 30000, 'febrero', 2023, 29888333);
 
 INSERT INTO visitas (idvisita, visfecha, vishora, vislugar, viscomentarios, cliente_rutcliente)
-VALUES (1, '2023-01-16','13:10:11', 'sala 1','paciente estable',29888333),
+VALUES (1, '2023-01-16','13:10:11', 'sala 1','paciente estable',181112220),
 (2, '2023-01-22','13:00:23', 'sala 2','paciente inestable',134206621),
 (3, '2023-02-05', '13:05:02','sala 3','sin comentarios',29888333);
 
@@ -189,7 +189,7 @@ VALUES ('revision tobillo', 1, 1),
 ('revision nariz', 3, 3); 
 
 INSERT INTO capacitaciones (idcapacitacion, capfecha, caphora, caplugar, capduracion, cliente_rutcliente)
-VALUES (1,'2023-01-16', '16:00:23', 'Sala capacitacion 2', 60, 29888333),
+VALUES (1,'2023-01-16', '16:00:23', 'Sala capacitacion 2', 60, 181112220),
 (2,'2023-01-22', '16:00:02', 'Sala capacitacion 53', 45, 134206621),
 (3,'2023-02-05','16:00:34', 'Sala capacitacion 4', 60,29888333);
 
@@ -200,7 +200,7 @@ capacitacion_idcapacitacion) VALUES
 (3, 'Constanza Camila Paez Riquelme', 54, 'CCamila@correo.com', '+569777444333', 3);
 
 INSERT INTO usuarios (idusuario, nombre, apellido, fechanacimiento, run, rutcliente_usuario)
-VALUES (1, 'pato', 'donald', '05-05-1980', 157773330, 29888333),
+VALUES (1, 'pato', 'donald', '05-05-1980', 157773330,181112220),
 (2, 'Raul','Blebla', '20-04-1984', 178883332, 134206621),
 (3, 'Clara', 'Estrella', '06-03-1987', 179992220, 29888333);
 
@@ -243,5 +243,5 @@ clientes cl ON cl.rutcliente = v.cliente_rutcliente WHERE cl.clicomuna = 'valpar
 /*c) Realice una consulta que despliegue los accidentes registrados para todos los clientes, indicando 
 los datos de detalle del accidente, y el nombre, apellido, RUT y teléfono del cliente al que se 
 asocia dicha situación.*/
-SELECT a.*, c.clinombres, c.cliapellidos, c.rutcliente, c.clitelefono FROM accidente INNER JOIN 
-
+SELECT a.*, cl.clinombres, cl.cliapellidos, cl.rutcliente, cl.clitelefono FROM accidente a INNER JOIN 
+clientes cl ON a.cliente_rutcliente = cl.rutcliente;
