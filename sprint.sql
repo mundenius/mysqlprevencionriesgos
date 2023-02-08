@@ -164,7 +164,7 @@ VALUES (181112220, 'Abel Andres', 'Valenzuela Perez', 999888222, 'afp lala',1,'m
 
 INSERT INTO accidente (idaccidente, accifecha, accihora, accilugar, acciorigen,
 acciconsecuencias, cliente_rutcliente) VALUES
-(1, '2023-01-15','14:32:54','calle peligrosa #532', 'caida desnivel','torcedura tobillo',29888333),
+(1, '2023-01-15','14:32:54','calle peligrosa #532', 'caida desnivel','torcedura tobillo',181112220),
 (2,'2023-01-20','04:05:24','Ruta 4 norte km 45','accidente transito','Fractura costillas',134206621),
 (3,'2023-02-02)','15:32:22', 'avenida sur 432','caida escalera', 'nariz rota', 29888333);
 
@@ -227,4 +227,21 @@ profesionalrecomendador, clienterecomendado) VALUES
 ('titulo mejora 2', 'vacaciones', 60, 2, 29888333),
 ('titulo mejora 3', 'aislamiento', 90, 3,134206621);
 
+
+/*a) Realice una consulta que permita listar todas las capacitaciones de un cliente en particular, 
+indicando el nombre completo, la edad y el correo electrónico de los asistentes.*/
+SELECT a.asistnombrecompleto, a.asistedad, a.asistcorreo FROM capacitaciones c
+INNER JOIN asistentes a ON c.idcapacitacion = a.capacitacion_idcapacitacion INNER JOIN 
+clientes cl ON cl.rutcliente = c.cliente_rutcliente;
+
+/*b) Realice una consulta que permita desplegar todas las visitas en terreno realizadas a los clientes 
+que sean de la comuna de Valparaíso. Por cada visita debe indicar todos los chequeos que se hicieron
+ en ella, junto con el estado de cumplimiento de cada uno.*/
+SELECT v.*, c.* FROM visitas v INNER JOIN chequeo c ON c.idvisita_chequeo = v.idvisita INNER JOIN
+clientes cl ON cl.rutcliente = v.cliente_rutcliente WHERE cl.clicomuna = 'valparaiso';
+
+/*c) Realice una consulta que despliegue los accidentes registrados para todos los clientes, indicando 
+los datos de detalle del accidente, y el nombre, apellido, RUT y teléfono del cliente al que se 
+asocia dicha situación.*/
+SELECT a.*, c.clinombres, c.cliapellidos, c.rutcliente, c.clitelefono FROM accidente INNER JOIN 
 
